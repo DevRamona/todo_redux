@@ -1,24 +1,15 @@
-import { Import } from "lucide-react";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
-import {
-  addTodo,
-  setTodoList,
-  sortTodo,
-  updateTodo,
-  toggleCompleted,
-} from "../TodoSlice";
+import { addTodo, updateTodo, toggleCompleted, deleteToDo } from "../TodoSlice";
 import { TiPencil } from "react-icons/ti";
 import { BsTrash } from "react-icons/bs";
-import { current } from "@reduxjs/toolkit";
 
 const ToDoList = () => {
   const dispatch = useDispatch();
   const todoList = useSelector((state) => state.todo.todoList);
-  const sortCriteria = useSelector((state) => state.todo.sortCriteria);
   const [currentToDo, setCurrentToDo] = useState(null);
   const [newTask, setNewTask] = useState("");
+
   const handleAddToDo = () => {
     if (newTask.trim() !== "") {
       if (currentToDo) {
@@ -39,6 +30,7 @@ const ToDoList = () => {
   const handleToggleComplete = (id) => {
     dispatch(toggleCompleted({ id }));
   };
+
   const handleDeleteToDo = (id) => {
     dispatch(deleteToDo({ id }));
   };
@@ -47,9 +39,10 @@ const ToDoList = () => {
     setCurrentToDo(null);
     setNewTask("");
   };
+
   return (
-    <div>
-      <div className="flex justify-between">
+    <div className="max-w-md mx-auto mt-8">
+      <div className="flex justify-between mb-4">
         <input
           type="text"
           value={newTask}
@@ -57,8 +50,6 @@ const ToDoList = () => {
           placeholder={currentToDo ? "Update your tasks" : "Enter your task"}
           className="flex-grow mr-2 p-2 border rounded"
         />
-      </div>
-      <div>
         {currentToDo ? (
           <>
             <button
@@ -67,40 +58,55 @@ const ToDoList = () => {
             >
               Save
             </button>
-            <button onClick = {handleCancel}className="bg-gray-500 text-white px-4 py-2 rounded mr-2">
+            <button
+              onClick={handleCancel}
+              className="bg-gray-500 text-white px-4 py-2 rounded"
+            >
               Cancel
             </button>
           </>
         ) : (
-          <>
-            
-            
-            <button onClick = {handleAddToDo}className="bg-orange-700 border px-4 py-1 text-white">
-              Add
-            </button>
-          </>
+          <button
+            onClick={handleAddToDo}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Add
+          </button>
         )}
       </div>
-      <button className="bg-orange-600 text-center text-white rounded-md px-10 py-3 mt-7">
-        Add task
-      </button>
-
       <ul>
         {todoList.map((todo) => (
-          <li key={todo.id} className="flex items-center justify-between mb-2 p-2 border rounded">
-            <span className={todo.completed ? "line-through" : ""}>{todo.task}</span>
+          <li
+            key={todo.id}
+            className="flex items-center justify-between mb-2 p-2 border rounded"
+          >
+            <span className={todo.completed ? "line-through" : ""}>
+              {todo.task}
+            </span>
             <div>
-              <button onClick={() => handleToggleComplete(todo.id)} className="mr-2 text-green-500"> {todo.completed ? "Undo" : "Complete"}</button>
-              <button onClick={() => handleUpdate(todo)} className="mr-2 text-blue-500"> <TiPencil/></button>
-              <button onClick={() => handleDeleteToDo(todo.id)} className="text-red-500"><BsTrash/></button>
+              <button
+                onClick={() => handleToggleComplete(todo.id)}
+                className="mr-2 text-green-500"
+              >
+                {todo.completed ? "Undo" : "Complete"}
+              </button>
+              <button
+                onClick={() => handleUpdate(todo)}
+                className="mr-2 text-blue-500"
+              >
+                <TiPencil />
+              </button>
+              <button
+                onClick={() => handleDeleteToDo(todo.id)}
+                className="text-red-500"
+              >
+                <BsTrash />
+              </button>
             </div>
           </li>
         ))}
       </ul>
     </div>
-
-    
-
   );
 };
 
