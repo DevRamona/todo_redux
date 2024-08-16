@@ -84,8 +84,23 @@ const ToDoList = () => {
       <button className="bg-orange-600 text-center text-white rounded-md px-10 py-3 mt-7">
         Add task
       </button>
+
+      <ul>
+        {todoList.map((todo) => (
+          <li key={todo.id} className="flex items-center justify-between mb-2 p-2 border rounded">
+            <span className={todo.completed ? "line-through" : ""}>{todo.task}</span>
+            <div>
+              <button onClick={() => handleToggleComplete(todo.id)} className="mr-2 text-green-500"> {todo.completed ? "Undo" : "Complete"}</button>
+              <button onClick={() => handleUpdate(todo)} className="mr-2 text-blue-500"> <TiPencil/></button>
+              <button onClick={() => handleDeleteToDo(todo.id)} className="text-red-500"><BsTrash/></button>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
+
     
+
   );
 };
 
