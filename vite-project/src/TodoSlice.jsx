@@ -27,9 +27,17 @@ const ToDoSlice = createSlice({
         toggleCompleted : (state, action) => {
             const {id} = action.payload;
             const index = state.todoList.findIndex((todo) => todo.id === id)
-            state.todoList[index].completed = !state.todoList[index].completed
-
+            if(index !== -1) {
+                state.todoList[index].completed = !state.todoList[index].completed
+            }
+           
         },
+
+        deleteToDo : (state, action) => {
+            const {id} = action.payload
+            state.todoList = state.todoList.filter((todo) => todo.id !== id)
+        }
+
          
     }
 })

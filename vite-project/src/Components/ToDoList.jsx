@@ -37,6 +37,8 @@ const ToDoList = () => {
     const handleDeleteToDo = (id) => {
       dispatch(deleteToDo({id}))
     }
+
+    
   return (
     <div>
         <div className='flex justify-between'>
