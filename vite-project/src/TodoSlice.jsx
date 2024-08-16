@@ -49,6 +49,6 @@ const initialState = {
 
 }
 
-export const {setTodoList, addTodo,sortTodo, updateTodo, toggleCompleted} = ToDoSlice.actions
+export const {setTodoList, addTodo,sortTodo, updateTodo, toggleCompleted, deleteToDo} = ToDoSlice.actions
 
 export default ToDoSlice.reducer
