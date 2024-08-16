@@ -67,19 +67,17 @@ const ToDoList = () => {
             >
               Save
             </button>
-            <button className="bg-gray-500 text-white px-4 py-2 rounded mr-2">
+            <button onClick = {handleCancel}className="bg-gray-500 text-white px-4 py-2 rounded mr-2">
               Cancel
             </button>
           </>
         ) : (
           <>
-            {" "}
-            <button className="bg-black border px-4 py-1 text-white ">
-              Cancel
-            </button>
-            <button className="bg-orange-700 border px-4 py-1 text-white">
+            
+            
+            <button onClick = {handleAddToDo}className="bg-orange-700 border px-4 py-1 text-white">
               Add
-            </button>{" "}
+            </button>
           </>
         )}
       </div>
@@ -87,6 +85,7 @@ const ToDoList = () => {
         Add task
       </button>
     </div>
+    
   );
 };
 
