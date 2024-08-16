@@ -13,6 +13,18 @@ const ToDoList = () => {
     const sortCriteria = useSelector((state) => state.todo.sortCriteria)
     const [currentToDo, setCurrentToDo] = useState(null)
     const [newTask, setNewTask] = useState("")
+    const handleAddToDo = () => { 
+      if (newTask.trim() !== "") {
+        if(currentToDo) {
+          dispatch(updateTodo({id : currentToDo.id, task : newTask}));
+          setCurrentToDo(null)
+        } else {
+          dispatch(addTodo({task : newTask, id: Date.now()}))
+        }
+        setNewTask("")
+      }
+       
+    }
   return (
     <div>
         <div className='flex justify-between'>
@@ -23,13 +35,13 @@ const ToDoList = () => {
           {currentToDo ? (
             <>
             <button>Save</button>
-            <button>Cancel</button>
+            <button>Cancel</button> 
             </>
           ) : (
             <> <button className='bg-black border px-4 py-1 text-white '>Cancel</button>
             <button className='bg-orange-700 border px-4 py-1 text-white'>Add</button> </>
           )}
-        </div>
+        </div>   
         <button className='bg-orange-600 text-center text-white rounded-md px-10 py-3 mt-7'>Add task</button>
       
     </div>
