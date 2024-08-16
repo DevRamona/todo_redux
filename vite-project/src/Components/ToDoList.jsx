@@ -25,6 +25,18 @@ const ToDoList = () => {
       }
        
     }
+
+    const handleUpdate = (todo) => {
+      setCurrentToDo(todo)
+      setNewTask(todo.task)
+    }
+
+    const handleToggleComplete = (id) => {
+      dispatch(toggleCompleted({id}))
+    }
+    const handleDeleteToDo = (id) => {
+      dispatch(deleteToDo({id}))
+    }
   return (
     <div>
         <div className='flex justify-between'>
@@ -34,8 +46,8 @@ const ToDoList = () => {
         <div>
           {currentToDo ? (
             <>
-            <button>Save</button>
-            <button>Cancel</button> 
+            <button onClick={handleAddToDo} className='bg-green-500 text-white px-4 py-2 rounded mr-2'>Save</button>
+            <button className='bg-gray-500 text-white px-4 py-2 rounded mr-2'>Cancel</button> 
             </>
           ) : (
             <> <button className='bg-black border px-4 py-1 text-white '>Cancel</button>
