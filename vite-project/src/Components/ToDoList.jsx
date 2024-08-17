@@ -60,7 +60,7 @@ const ToDoList = () => {
             </button>
             <button
               onClick={handleCancel}
-              className="bg-gray-500 text-white px-4 py-2 rounded"
+              className="bg-gray-600 text-white px-4 py-2 rounded"
             >
               Cancel
             </button>
