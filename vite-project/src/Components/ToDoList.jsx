@@ -98,7 +98,7 @@ const ToDoList = () => {
               </button>
               <button
                 onClick={() => handleDeleteToDo(todo.id)}
-                className="text-red-500"
+                className="text-red-500 font-medium"
               >
                 <BsTrash />
               </button>
